@@ -1,11 +1,7 @@
 import express from "express";
+import { Book } from '../models/bookModel.js'
 
 const router = express.Router();
-
-router.get("/", (request, response) => {
-  console.log(request);
-  return response.status(200).send("Welcome to MERN stack");
-});
 
 router.post("/books", async (request, response) => {
   try {
@@ -32,7 +28,7 @@ router.post("/books", async (request, response) => {
   }
 });
 
-router.get("/books", async (request, response) => {
+router.get("/", async (request, response) => {
   try {
     const books = await Book.find({});
     return response.status(200).json({
@@ -45,7 +41,7 @@ router.get("/books", async (request, response) => {
   }
 });
 
-router.get("/books/:id", async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
@@ -58,7 +54,7 @@ router.get("/books/:id", async (request, response) => {
   }
 });
 
-router.put("/books/:id", async (request, response) => {
+router.put("/:id", async (request, response) => {
   try {
     if (
       !request.body.title ||
@@ -85,7 +81,7 @@ router.put("/books/:id", async (request, response) => {
   }
 });
 
-router.delete("/books/:id", async (request, response) => {
+router.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
@@ -102,14 +98,4 @@ router.delete("/books/:id", async (request, response) => {
   }
 });
 
-mongoose
-  .connect(DATABASE_URL)
-  .then(() => {
-    console.log("App connected to database");
-    app.listen(PORT, () => {
-      console.log(`App is listening on port: ${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+  export default router;
