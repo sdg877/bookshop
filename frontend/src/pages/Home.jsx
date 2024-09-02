@@ -4,7 +4,7 @@ import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 import BookTable from "../components/home/BookTable";
-import BookCard from "../components/home/BookCard"; // Ensure this import
+import BookCard from "../components/home/BookCard"; 
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -20,7 +20,7 @@ const Home = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching books:", error); // Added error logging
+        console.error("Error fetching books:", error); 
         setLoading(false);
       });
   }, []);
